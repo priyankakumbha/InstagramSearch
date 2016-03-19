@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html  ng-app='myapp'>
+
+  <head lang="en">
+   <meta charset="UTF-8">
+    <title>Instagram searcher</title>
+     
+   <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-growl-v2/build/angular-growl.js"></script>
+    <script src="js/search.js" type="text/javascript" ></script>
+    
+    <script src="js/app.js" type="text/javascript" ></script>
+    
+    
+    
+   <link rel="stylesheet" href="css/style.css">
+     <link rel="stylesheet" href="bower_components\angular-growl-v2\build\angular-growl.css">
+  </head>
+
+  <body ng-controller="MyCtrl">
+   <div id="container">
+  <div id="heading">
+ 
+        <img id="left-logo" src="images/logo.png">
+          </div>
+       <form name="myForm"  role="form" novalidate ng-submit="search()" >
+        <div class="form_inp" ng-class="{'has-error': myForm.searchField.$invalid && !myForm.searchField.$pristine }">
+   <input name="searchField" class="input" type="text"  required ng-model="searchField" placeholder="Enter a tag for search" />
+    <p class="error-message"  ng-show="(myForm.searchField.$invalid && !myForm.searchField.$pristine)">Enter a word</p>
+                                
+</div>
+           <button type="submit" class=" btn-primary" >Submit</button>
+
+           </form>
+            <div id="messageBox" class="row text-center" growl>
+                <!--<label id="messageBox" ng-show="displayMessage">{{ message }}</label>-->
+            </div>
+           <div class="results"  ng-if="images" >
+ 
+          <div ng-repeat="item in images" >
+            
+           
+             <a class="thumbnail" ng-href="{{item.link}}">
+                        <img class="img-responsive" ng-src="{{ item.images.low_resolution.url }}" alt="{{ item.caption.text }}">
+                    </a>
+           </div>
+           </div>
+           
+            </div>
+    
+      
+  </body>
+
+</html>
